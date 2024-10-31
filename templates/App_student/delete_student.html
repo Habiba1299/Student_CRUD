@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title_block %} Enter a student Profile {% endblock%}
+
+{% block body_block %} 
+
+<h1>Are you sure you want to delete {{ student.name }}?</h1>
+
+<div class="container">
+    <form  method="POST"  enctype="multipart/form-data">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'App_student:student_details' student.student_id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+    
+</div>
+
+
+
+{% endblock%}

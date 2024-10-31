@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title_block %} {{ blog.blog_title }} {% endblock%}
+
+{% block body_block %}
+
+<!-- <h1> Student Details</h1> -->
+
+<div class="row">
+    <div class="col-sm-6">
+       <img src="/media/{{student.profile_pic}}" alt="{{student.name}} profile picture" width=100%>
+
+    </div>
+    <br>
+    <br>
+    <div class="col-sm-6">
+        <h2>Name : {{ student.name }}</h2>
+        <h5><strong>Date of Birth :</strong>{{ student.dob }}</h5>
+        <h5><strong>Address: </strong>{{ student.address }}</h5>
+        <h5><strong>Study Group: </strong>{{ student.study_group }}</h5>
+        <h6>Join Date: {{ student.join_date }}
+        </i></h6>
+        <i>
+            <h6>Updated On: {{ student.update_date }}
+        </i></h6>
+       
+    </div>
+    <div class="container mt-3">
+        <h5><strong>More about {{ student.name }} </strong></h5>
+        <p> {{ student.description|linebreaks }} </p>
+        <a href="{% url 'App_student:edit_student' student.student_id %}" class="btn btn-warning mt-3">Update</a>
+        
+        <form action="{% url 'App_student:delete_student' student.student_id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger mt-3">Delete</button>
+        </form>
+    </div>
+   
+
+</div>
+
+
+</div>
+
+
+{% endblock%}

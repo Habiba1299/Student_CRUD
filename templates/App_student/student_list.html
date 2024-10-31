@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title_block %} Home {% endblock%}
+
+
+{% block body_block %} 
+
+<h1>This is student List</h1>
+
+
+
+<div class="container">
+    <div class="row">
+        {% for student in students %}
+        <div class="col-md-6 col-lg-4">  
+            <div class="card mb-4">
+                <img src="/media/{{ student.profile_pic }}" class="card-img-top" 
+                alt="{{ student.name }} profile picture" 
+                style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h3 class="card-title">{{ student.name }}</h3>
+                    <h5 class="card-subtitle mb-2 text-muted">{{ student.school_name }}</h5>
+                    <h6 class="card-text">Student id: {{ student.student_id }}</h6>
+                    <a href="{% url 'App_student:student_details' student.student_id %}" class="btn btn-primary">More....</a> 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock%}
